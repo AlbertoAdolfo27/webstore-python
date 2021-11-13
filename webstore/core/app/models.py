@@ -29,7 +29,7 @@ class Person(models.Model):
 class Type(models.Model):
     id = models.PositiveIntegerField(primary_key=True, unique=True)
     name = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
+    description = models.CharField(max_length=255, null=True)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
 
