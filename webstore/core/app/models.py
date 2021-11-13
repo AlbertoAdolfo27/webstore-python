@@ -33,6 +33,10 @@ class Type(models.Model):
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
 
+    def __str__(self):
+        return f'Id: {self.id} Name: {self.name} Description: {self.description}' \
+               f' Create time: {self.create_time} Update time: {self.update_time}'
+
 
 class User(models.Model):
     username = models.CharField(max_length=255)
@@ -44,6 +48,14 @@ class User(models.Model):
     person = models.ForeignKey(Person, on_delete=models.SET_NULL, null=True)
     type = models.ForeignKey(Type, on_delete=models.SET_NULL, null=True)
 
+    def __str__(self):
+        return f'Username {self.username}'
+
+    class Meta:
+        verbose_name = 'Usúario'
+        verbose_name_plural = 'Usúarios'
+        ordering = ['id']
+
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -52,12 +64,18 @@ class Product(models.Model):
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
 
+    def __str__(self):
+        return f'Name: {self.name}'
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255, null=True)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
+
+    def __str__(self):
+        return f'Name: {self.name}'
 
 
 class ProductCategory(models.Model):
@@ -66,6 +84,9 @@ class ProductCategory(models.Model):
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
 
+    def __str__(self):
+        return f'Product: {self.product}'
+
 
 class Cart(models.Model):
     session_id = models.CharField(max_length=255)
@@ -73,12 +94,18 @@ class Cart(models.Model):
     update_time = models.DateTimeField(auto_now=True, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
+    def __str__(self):
+        return f'Session: {self.session_id}'
+
 
 class ProductCart(models.Model):
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
     cart = models.ForeignKey(Cart, on_delete=models.SET_NULL, null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return f'Cart: {self.cart}'
 
 
 class Request(models.Model):
@@ -88,6 +115,9 @@ class Request(models.Model):
     update_time = models.DateTimeField(auto_now=True, null=True)
     cart = models.ForeignKey(Cart, on_delete=models.SET_NULL, null=True)
 
+    def __str__(self):
+        return f'Total price: {self.total_price}'
+
 
 class Payment(models.Model):
     state = models.PositiveIntegerField(default=1)
@@ -95,3 +125,6 @@ class Payment(models.Model):
     update_time = models.DateTimeField(auto_now=True, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     request = models.ForeignKey(Request, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return f'State: {self.state}'
