@@ -29,13 +29,12 @@ class Person(models.Model):
 class Type(models.Model):
     id = models.PositiveIntegerField(primary_key=True, unique=True)
     name = models.CharField(max_length=255)
-    description = models.CharField(max_length=255, null=True)
+    description = models.CharField(max_length=255, null=True, blank=True)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
-        return f'Id: {self.id} Name: {self.name} Description: {self.description}' \
-               f' Create time: {self.create_time} Update time: {self.update_time}'
+        return f'{self.id} | {self.name} | {self.description}'
 
 
 class User(models.Model):
@@ -70,7 +69,7 @@ class Product(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
-    description = models.CharField(max_length=255, null=True)
+    description = models.CharField(max_length=255, null=True, blank=True)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
 

@@ -30,5 +30,5 @@ from var_dump import var_dump
 
 # Filter
 query = Type()
-query = Type.objects.filter(name_contains='a')
+query = Type.objects.filter(id=1)
 print(query)
