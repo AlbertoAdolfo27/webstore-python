@@ -2,9 +2,11 @@ from django.http import JsonResponse
 from django.views import View
 from core.api.models import Category
 from core.api.serializers import CategorySerializer
+from rest_framework import status
+from rest_framework.views import APIView
 
 
-class CategoryView(View):
+class CategoryView(APIView):
 
     @staticmethod
     def get(request):
@@ -12,4 +14,4 @@ class CategoryView(View):
         serializer = CategorySerializer(categories, many=True)
         data = serializer.data
 
-        return JsonResponse(data, safe=False, status=200)
+        return JsonResponse(data, safe=False, status=status.HTTP_200_OK)
