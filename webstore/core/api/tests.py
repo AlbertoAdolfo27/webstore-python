@@ -84,3 +84,14 @@ from core.api.models import Person
 #
 # user = User.objects.select_related('person', 'type');
 # print(user)
+
+
+# import requests
+#
+#
+# def buscar_dados():
+#     request = requests.get("http://127.0.0.1:8080/api/categories/")
+#     print((request).json())
+#
+#
+# print(buscar_dados())

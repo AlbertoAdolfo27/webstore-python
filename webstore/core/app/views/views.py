@@ -7,6 +7,8 @@ class IndexView(View):
     @staticmethod
     def get(request):
         data = {
-            'page_name': 'Home page'
+            'page_title': 'Home page'
         }
         return render(request, 'index.html', data)
+
+

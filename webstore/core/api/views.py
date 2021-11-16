@@ -1,7 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.views import View
 from core.api.models import Category
+from core.api.serializers import CategorySerializer
 
 
 class CategoryView(View):
@@ -9,9 +9,7 @@ class CategoryView(View):
     @staticmethod
     def get(request):
         categories = Category.objects.all()
-        data = {
-            'page_name': 'Categories',
-            'categories': categories
-        }
+        serializer = CategorySerializer(categories, many=True)
+        data = serializer.data
 
-        return render(request, 'admin/categories.html', data)
+        return JsonResponse(data, safe=False, status=200)
