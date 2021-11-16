@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{page_name}}</title>
+</head>
+<body>
+<ul>
+    <h1>Categories</h1>
+    {% if categories %}
+    {% for category in categories %}
+    <li>{{category.name}}</li>
+    {% endfor %}
+    {% else %}
+    <p>No category saved</p>
+    {% endif %}
+</ul>
+</body>
+</html>
