@@ -31,8 +31,8 @@ class Person(models.Model):
     gender = models.CharField(max_length=45)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
-    address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True)
-    contact = models.ForeignKey(Contact, on_delete=models.SET_NULL, null=True)
+    address = models.ForeignKey(Address, on_delete=models.PROTECT, null=True)
+    contact = models.ForeignKey(Contact, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
         return f'{self.firstname} {self.lastname}'
@@ -56,8 +56,8 @@ class User(models.Model):
     state = models.PositiveIntegerField(default=1)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
-    person = models.ForeignKey(Person, on_delete=models.SET_NULL, null=True)
-    type = models.ForeignKey(Type, on_delete=models.SET_NULL, null=True)
+    person = models.ForeignKey(Person, on_delete=models.PROTECT, null=True)
+    type = models.ForeignKey(Type, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
         return f'{self.username} {self.email} {self.type.name}'
@@ -93,8 +93,8 @@ class Category(models.Model):
 
 class ProductCategory(models.Model):
     id = models.BigAutoField(primary_key=True)
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    product = models.ForeignKey(Product, on_delete=models.PROTECT, null=True)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
 
@@ -107,7 +107,7 @@ class Cart(models.Model):
     session_id = models.CharField(max_length=255)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
         return f'Session: {self.session_id}'
@@ -117,8 +117,8 @@ class ProductCart(models.Model):
     id = models.BigAutoField(primary_key=True)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
-    cart = models.ForeignKey(Cart, on_delete=models.SET_NULL, null=True)
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    cart = models.ForeignKey(Cart, on_delete=models.PROTECT, null=True)
+    product = models.ForeignKey(Product, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
         return f'Cart: {self.cart}'
@@ -130,7 +130,7 @@ class Request(models.Model):
     product_quantity = models.PositiveIntegerField()
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
-    cart = models.ForeignKey(Cart, on_delete=models.SET_NULL, null=True)
+    cart = models.ForeignKey(Cart, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
         return f'Total price: {self.total_price}'
@@ -141,8 +141,8 @@ class Payment(models.Model):
     state = models.PositiveIntegerField(default=1)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    request = models.ForeignKey(Request, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+    request = models.ForeignKey(Request, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
         return f'State: {self.state}'
