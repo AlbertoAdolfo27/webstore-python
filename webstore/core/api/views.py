@@ -1,5 +1,4 @@
 from django.http import JsonResponse
-from django.views import View
 from core.api.models import Category
 from core.api.serializers import CategorySerializer
 from rest_framework import status
