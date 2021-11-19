@@ -4,7 +4,7 @@ from webstore.wsgi import *
 
 from var_dump import var_dump
 
-from core.api.models import Type
+from core.api.models import UserType
 from core.api.models import User
 from core.api.models import Address
 from core.api.models import Contact
