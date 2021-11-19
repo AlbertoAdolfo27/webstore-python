@@ -11,5 +11,35 @@ Categories
 
 
 {% block content %}
-<p>Categories</p>
+
+<div class="container bg-white p-4">
+
+    <div class="mb-3">
+        <a href="" class="btn btn-primary"><i class="fas fa-plus-circle"></i>
+            Add category</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table  table-bordered">
+            <thead>
+            <tr>
+                <th class="col-md-10">Name</th>
+                <th class="col-md-2">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+            <tr>
+                <td class="col-md-10">{{category.name}}</td>
+                <td class="col-md-2">
+                    <a href="" class="btn btn-info btn-xs rounded p-1 px-2"><i class="fas fa-bars"></i></a>
+                    <a href="" class="btn btn-success btn-xs rounded p-1 px-2"><i class="fas fa-edit"></i></a>
+                    <a href="" class="btn btn-danger btn-xs rounded p-1 px-2"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
 {% endblock %}
