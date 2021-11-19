@@ -1,7 +1,14 @@
 {% extends 'site/admin/index.html' %}
+
 {% block header-title %}
 Categories
 {% endblock %}
+
+{% block breadcrumb-items %}
+<li class="breadcrumb-item active"><a href="{% url 'app:admin-index' %}">Home</a></li>
+<li class="breadcrumb-item active">{{page_title}}</li>
+{% endblock %}
+
 
 {% block content %}
 <p>Categories</p>
