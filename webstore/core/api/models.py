@@ -107,7 +107,7 @@ class Category(models.Model):
     description = models.CharField(max_length=255, null=True, blank=True)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
-    products = models.ManyToManyField(Product, verbose_name='products')
+    products = models.ManyToManyField(Product, verbose_name='products', blank=True)
 
     class Meta:
         verbose_name = 'category'
@@ -123,7 +123,7 @@ class Cart(models.Model):
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
     user = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
-    products = models.ManyToManyField(Product, verbose_name='products')
+    products = models.ManyToManyField(Product, verbose_name='products', blank=True)
 
     class Meta:
         verbose_name = 'cart'
