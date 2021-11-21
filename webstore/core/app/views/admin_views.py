@@ -12,23 +12,23 @@ class IndexView(View):
             categories = get_request.json()
 
         data = {
-            'page_title': 'Admin - Dashboard',
+            'page_title': 'Dashboard',
+            'sidebar_active': 'sidebar_dashboard',
             'categories': categories
         }
-        return render(request, 'site/admin/index.html', data)
+        return render(request, 'admin/index.html', data)
 
 
-class CategoriesListView(View):
+class CategoryListView(View):
     @staticmethod
     def get(request):
         get_request = requests.get('http://127.0.0.1:8080/api/categories/')
         categories = []
         if get_request.status_code == 200:
             categories = get_request.json()
-
         data = {
-            'request': request,
             'page_title': 'Categories',
+            'sidebar_active': 'sidebar_categories',
             'categories': categories,
         }
-        return render(request, 'site/admin/categories.html', data)
+        return render(request, 'admin/categories.html', data)

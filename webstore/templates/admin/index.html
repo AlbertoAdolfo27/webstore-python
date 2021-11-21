@@ -18,10 +18,10 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
     <!-- Include NAVBAR -->
-    {% include 'site/admin/tpl-structure/navbar.html'%}
+    {% include 'admin/tpl-structure/navbar.html'%}
 
     <!-- Include SIDEBAR -->
-    {% include 'site/admin/tpl-structure/sidebar.html'%}
+    {% include 'admin/tpl-structure/sidebar.html'%}
 
     <div class="content-wrapper">
         <!--HEADER -->
@@ -46,27 +46,37 @@
 
         <div class="content mb-4">
             <div class="container">
+                <div class="container bg-white p-4">
+                    <!--  Block CONTENT  -->
+                    {% block content %}
+                    <p>Home</p>
+                    {% endblock %}
 
-                <!--  Block CONTENT  -->
-                {% block content %}
-                <p>Home</p>
-                {% endblock %}
-
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Include footer -->
-    {% include 'site/admin/tpl-structure/footer.html'%}
+    {% include 'admin/tpl-structure/footer.html'%}
 </div>
 
 {% block default-scripts %}
 <script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
 <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'libs/adminlte/js/adminlte.min.js' %}"></script>
+<script src="{% static 'js/admin/scripts.js' %}"></script>
+
 {% endblock %}
 
 {% block page-scripts %}{% endblock %}
+<script>
+    window.addEventListener('load', (event) => {
+        sidebarActive('{{sidebar_active}}');
+    });
+
+
+</script>
 
 </body>
 </html>
