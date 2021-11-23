@@ -1,0 +1,88 @@
+{% extends 'admin/index.html' %}
+
+{% block header-title %}
+{{category.name}} category
+{% endblock %}
+
+{% block breadcrumb-items %}
+<li class="breadcrumb-item"><a href="{% url 'app:admin-index' %}">Home</a></li>
+<li class="breadcrumb-item"><a href="{% url 'app:admin-category-list' %}">Categories</a></li>
+<li class="breadcrumb-item active">Detail</li>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6" id="all-products">
+        <p class="pt-4">unrelated products</p>
+<!--        {if="$quantidadeCursosNaoRelacionados>0"}-->
+        <div class="table-responsive">
+            <table class="table  table-bordered">
+                <thead class="w3-light-grey">
+                <tr>
+                    <th>Nome do curso</th>
+                    <th class="text-right">Relacionar</th>
+                </tr>
+                </thead>
+                <tbody>
+<!--                {loop="$cursosNaoRelacionados"}-->
+                <tr>
+                    <td>{$value.curso_nome}</td>
+                    <td>
+                        <div class="p-0 w3-right">
+                            <a href="/administrador/categorias/{$categoria.categoria_id}/cursos/{$value.curso_id}/relacionar"
+                               class="btn btn-success btn-block btn-xs w3-tiny" style="padding: 2px 5px; width: 50px">
+                                <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+
+<!--                {/loop}-->
+                </tbody>
+            </table>
+        </div>
+<!--        {else}-->
+        <div class="alert alert-info">
+            all products are related to {{category.name}} category
+        </div>
+<!--        {/if}-->
+    </div>
+
+    <div class="col-md-6" id="cursos-categoria">
+        <p class="pt-4">all products are related</p>
+<!--        {if="$quantidadeCursosRelacionados>0"}-->
+        <div class="table-responsive">
+            <table class="table  table-bordered">
+                <thead class="w3-light-grey">
+                <tr>
+                    <th class="text-left">Remove</th>
+                    <th>#</th>
+                    <th>Product</th>
+                </tr>
+                </thead>
+                <tbody>
+<!--                {loop="$cursosRelacionados"}-->
+                <tr>
+                    <td>
+                        <div class="p-0 w3-left">
+                            <a href="/administrador/categorias/{$categoria.categoria_id}/cursos/{$value.curso_id}/remover"
+                               class="btn btn-danger btn-block btn-xs w3-tiny" style="padding: 2px 5px; width: 50px">
+                                <i class="fa fa-arrow-left"></i>
+                            </a>
+                        </div>
+                    </td>
+                    <td>id</td>
+                    <td>name/td>
+                </tr>
+<!--                {/loop}-->
+                </tbody>
+            </table>
+        </div>
+<!--        {else}-->
+        <div class="alert alert-info">
+            No product is related to {{category.name}} category
+        </div>
+<!--        {/if}-->
+    </div>
+</div>
+{% endblock %}

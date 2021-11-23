@@ -12,20 +12,20 @@ Categories
 
 {% block breadcrumb-items %}
 <li class="breadcrumb-item"><a href="{% url 'app:admin-index' %}">Home</a></li>
-<li class="breadcrumb-item active">Categories</li>
+<li class="breadcrumb-item active">Products</li>
 {% endblock %}
 
 
 {% block content %}
 
 <div class="mb-3">
-    <a href="{% url 'app:admin-category-add' %}" class="btn btn-primary"><i class="fas fa-plus-circle"></i>
-        Add category</a>
+    <a href="{% url 'app:admin-product-add' %" class="btn btn-primary"><i class="fas fa-plus-circle"></i>
+        Add product</a>
 </div>
 
-{% if categories %}
+{% if products %}
 <div class="table-responsive">
-    <table class="table  table-bordered" id="categories-table">
+    <table class="table  table-bordered" id="product-table">
         <thead>
         <tr>
             <th class="col-md-10">Name</th>
@@ -33,14 +33,17 @@ Categories
         </tr>
         </thead>
         <tbody>
-        {% for category in categories %}
+        {% for product in products %}
         <tr>
-            <td class="col-md-10">{{category.name}}</td>
+            <td class="col-md-10">{{product.name}}</td>
             <td class="col-md-2">
                 <div class="btn-group">
-                    <a href="{% url 'app:admin-category-detail' pk=category.id %}" class="btn btn-info btn-xs rounded p-1 px-2"><i class="fas fa-bars"></i></a>
-                    <a href="{% url 'app:admin-category-edit' pk=category.id %}" class="btn btn-success btn-xs rounded p-1 px-2 mx-2"><i class="fas fa-edit"></i></a>
-                    <a href="{% url 'app:admin-category-delete' pk=category.id %}" class="btn btn-danger btn-xs rounded p-1 px-2"><i class="fas fa-trash"></i></a>
+                    <a href="{% url 'app:admin-product-detail' pk=product.id %"
+                       class="btn btn-info btn-xs rounded p-1 px-2"><i class="fas fa-bars"></i></a>
+                    <a href="{% url 'app:admin-product-edit' pk=product.id %"
+                       class="btn btn-success btn-xs rounded p-1 px-2 mx-2"><i class="fas fa-edit"></i></a>
+                    <a href="{% url 'app:admin-product-delete' pk=product.id %"
+                       class="btn btn-danger btn-xs rounded p-1 px-2"><i class="fas fa-trash"></i></a>
                 </div>
             </td>
         </tr>
@@ -49,7 +52,7 @@ Categories
     </table>
 </div>
 {% else %}
-No registered categories
+No registered products
 {% endif %}
 
 {% endblock %}
@@ -60,8 +63,14 @@ No registered categories
 
 <script>
     $(document).ready( function () {
-        $('#categories-table').DataTable();
+        $('#products-table').DataTable();
     } );
+
+
+
+
+
+
 
 
 </script>

@@ -1,10 +1,12 @@
 from django.test import TestCase
+from django.urls import reverse
 
+from core.app.utils.Server import Server
 from webstore.wsgi import *
 
 from var_dump import var_dump
 
-from core.api.models import UserType
+from core.api.models import UserType, Category
 from core.api.models import User
 from core.api.models import Address
 from core.api.models import Contact
@@ -95,3 +97,22 @@ from core.api.models import Person
 #
 #
 # print(buscar_dados())
+
+#gquery many to many
+
+# c = Category.objects.all()
+# for p in c:
+#     print(p.products.all())
+
+# print(reverse('api:category-list'))
+
+print(Server.get_url('app:admin-product-list'))
+
+
+# def myFun(*kwargs):
+#     for value in kwargs:
+#         print(f'{value}')
+#
+#
+# # Driver code
+# myFun('Geeks', 'for', 'Geeks')
