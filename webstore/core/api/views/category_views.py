@@ -1,8 +1,8 @@
 from django.http import Http404
 from rest_framework.response import Response
 
-from core.api.models import Category
-from core.api.serializers import CategorySerializer
+from core.api.models import Category, Product
+from core.api.serializers import CategorySerializer, ProductSerializer
 from rest_framework import status
 from rest_framework.views import APIView
 
@@ -25,8 +25,8 @@ class CategoryView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# Category Detail
 class CategoryDetailView(APIView):
-
     # Query Category
     @staticmethod
     def get_object(pk):
@@ -43,11 +43,18 @@ class CategoryDetailView(APIView):
 
 
 class CategoryProductsViews(APIView):
-
     @staticmethod
     def get(request, pk):
-        category = CategoryDetailView.get_object(pk).products
-        serializer = CategorySerializer(category, many=True)
+        products = CategoryDetailView.get_object(pk).products.all()
+        serializer = ProductSerializer(products,  many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+class CategoryProductsNotInViews(APIView):
+    @staticmethod
+    def get(request, pk):
+        products = Product.objects.exclude(
+            pk__in=CategoryDetailView.get_object(pk).products.all()
+        )
+        serializer = ProductSerializer(products, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

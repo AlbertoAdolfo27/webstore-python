@@ -1,7 +1,12 @@
+from urllib import request
+
+from django.http import HttpRequest
 from django.test import TestCase
 from django.urls import reverse
+from requests import request
 
 from core.app.utils.Server import Server
+from webstore import settings
 from webstore.wsgi import *
 
 from var_dump import var_dump
@@ -106,7 +111,7 @@ from core.api.models import Person
 
 # print(reverse('api:category-list'))
 
-print(Server.get_url('app:admin-product-list'))
+# print(Server.get_url('app:admin-product-list'))
 
 
 # def myFun(*kwargs):
@@ -116,3 +121,6 @@ print(Server.get_url('app:admin-product-list'))
 #
 # # Driver code
 # myFun('Geeks', 'for', 'Geeks')
+
+from django.http import request
+

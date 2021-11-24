@@ -55,17 +55,25 @@ class CategoryDetailView(View):
     def get(request, pk):
 
         response = requests.get(Server.get_url('api:category-detail', [pk]))
+        products_not_in = []
+        products = []
         category = []
         errors = []
         if response.status_code == status.HTTP_200_OK:
             category = response.json()
+            products = requests.get(Server.get_url('api:category-products', [pk])).json()
+            products_not_in = requests.get(Server.get_url('api:category-products-notin', [pk])).json()
         else:
             errors = response.json()
+        print(products_not_in)
         data = {
             'page_title': 'Category detail',
             'sidebar_active': 'sidebar_categories',
             'category': category,
+            'products': products,
+            'products_not_in': products_not_in,
             'status_code': response.status_code,
             'errors': errors,
         }
+        print(products)
         return render(request, 'admin/category_detail.html', data)

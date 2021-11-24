@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon1.ico' %}"/>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon2.ico' %}"/>
     {% block default-styles %}
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -46,6 +46,12 @@
         <div class="content mb-4">
             <div class="container">
                 <div class="container bg-white p-4">
+
+                    {% if errors %}
+                    {% for error in errors %}
+                    <p>{{error}}</p>
+                    {% endfor %}
+                    {% endif %}
                     <!--  Block CONTENT  -->
                     {% block content %}
                     <p>Home</p>

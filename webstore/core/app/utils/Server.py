@@ -1,13 +1,14 @@
-from array import array
-
+from array import array, ArrayType
+from django.http import HttpRequest
 from django.urls import reverse
 
 
 class Server:
-    SERVER_ROOT = 'http://127.0.0.1:8080'
+    HTTP_HOST = 'http://127.0.0.1:8080'
 
     @classmethod
-    def get_url(cls, path_name: str = 'api:category-list', args: array = []):
-        return cls.SERVER_ROOT + reverse(path_name, args=args)
+    def get_url(cls, path_name: str = 'api:category-list', args: array | ArrayType = []):
+        # print(HttpRequest.get_host())
+        return cls.HTTP_HOST + reverse(path_name, args=args)
 
 

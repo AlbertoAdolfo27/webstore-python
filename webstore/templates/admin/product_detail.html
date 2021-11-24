@@ -1,0 +1,25 @@
+{% extends 'admin/index.html' %}
+
+{% block header-title %}
+{{product.name}}
+{% endblock %}
+
+{% block breadcrumb-items %}
+<li class="breadcrumb-item"><a href="{% url 'app:admin-index' %}">Home</a></li>
+<li class="breadcrumb-item"><a href="{% url 'app:admin-category-list' %}">Products</a></li>
+<li class="breadcrumb-item active">Detail</li>
+{% endblock %}
+
+{% block content %}
+<h1 class="lead">Description</h1>
+<p>{{product.description}}</p>
+
+<h1 class="lead">Price</h1>
+<p>&dollar; {{product.price}}</p>
+
+<h1 class="lead">Add time</h1>
+<p>{{product.create_time}}</p>
+
+<h1 class="lead">Last updated time</h1>
+<p>{{product.update_time}}</p>
+{% endblock %}

@@ -39,8 +39,8 @@ class Person(models.Model):
     gender = models.CharField(max_length=45)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
-    address = models.OneToOneField(Address, on_delete=models.PROTECT, null=True)
-    contact = models.ForeignKey(Contact, on_delete=models.PROTECT, null=True)
+    address = models.OneToOneField(Address, on_delete=models.CASCADE, null=True)
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = 'person'
@@ -73,8 +73,8 @@ class User(models.Model):
     state = models.PositiveIntegerField(default=1)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
-    person = models.ForeignKey(Person, on_delete=models.PROTECT, null=True)
-    usertype = models.OneToOneField(UserType, on_delete=models.PROTECT, null=True)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True)
+    usertype = models.OneToOneField(UserType, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f'{self.username} {self.email} {self.user_type.name}'
@@ -122,7 +122,7 @@ class Cart(models.Model):
     session_id = models.CharField(max_length=255)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     products = models.ManyToManyField(Product, verbose_name='products', blank=True)
 
     class Meta:
@@ -139,7 +139,7 @@ class Order(models.Model):
     product_quantity = models.PositiveIntegerField()
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
-    cart = models.OneToOneField(Cart, on_delete=models.PROTECT, null=True)
+    cart = models.OneToOneField(Cart, on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = 'order'
@@ -154,8 +154,8 @@ class Payment(models.Model):
     state = models.PositiveIntegerField(default=1)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
-    order = models.OneToOneField(Order, on_delete=models.PROTECT, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    order = models.OneToOneField(Order, on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = 'payment'

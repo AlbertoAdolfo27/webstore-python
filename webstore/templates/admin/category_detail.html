@@ -13,20 +13,20 @@
 {% block content %}
 <div class="row">
     <div class="col-md-6" id="all-products">
-        <p class="pt-4">unrelated products</p>
-<!--        {if="$quantidadeCursosNaoRelacionados>0"}-->
+        <p class="pt-4 lead">Unrelated products</p>
+        {% if products_not_in %}
         <div class="table-responsive">
             <table class="table  table-bordered">
                 <thead class="w3-light-grey">
                 <tr>
-                    <th>Nome do curso</th>
-                    <th class="text-right">Relacionar</th>
+                    <th>Name</th>
+                    <th>Add</th>
                 </tr>
                 </thead>
                 <tbody>
-<!--                {loop="$cursosNaoRelacionados"}-->
+                {% for product in products_not_in %}
                 <tr>
-                    <td>{$value.curso_nome}</td>
+                    <td>{{product.name}}</td>
                     <td>
                         <div class="p-0 w3-right">
                             <a href="/administrador/categorias/{$categoria.categoria_id}/cursos/{$value.curso_id}/relacionar"
@@ -36,20 +36,18 @@
                         </div>
                     </td>
                 </tr>
-
-<!--                {/loop}-->
+                {% endfor %}
                 </tbody>
             </table>
         </div>
-<!--        {else}-->
-        <div class="alert alert-info">
-            all products are related to {{category.name}} category
-        </div>
-<!--        {/if}-->
+        {% else %}
+        <p>All products are related to {{category.name}} category</p>
+        {% endif %}
     </div>
 
     <div class="col-md-6" id="cursos-categoria">
-        <p class="pt-4">all products are related</p>
+        <p class="pt-4 lead">All products are related</p>
+        {% if products %}
 <!--        {if="$quantidadeCursosRelacionados>0"}-->
         <div class="table-responsive">
             <table class="table  table-bordered">
@@ -61,6 +59,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                {% for product in products %}
 <!--                {loop="$cursosRelacionados"}-->
                 <tr>
                     <td>
@@ -74,14 +73,15 @@
                     <td>id</td>
                     <td>name/td>
                 </tr>
+                {% endfor %}
 <!--                {/loop}-->
                 </tbody>
             </table>
         </div>
+        {% else %}
 <!--        {else}-->
-        <div class="alert alert-info">
-            No product is related to {{category.name}} category
-        </div>
+        <p>No product is related to {{category.name}} category</p>
+        {% endif %}
 <!--        {/if}-->
     </div>
 </div>
