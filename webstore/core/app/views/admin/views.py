@@ -13,7 +13,9 @@ class IndexView(View):
 
         data = {
             'page_title': 'Dashboard',
-            'sidebar_active': 'sidebar_dashboard',
+            'sidebar_active': {
+                'link_1': 'sb_link_dashboard',
+            },
             'categories': categories
         }
         return render(request, 'admin/index.html', data)

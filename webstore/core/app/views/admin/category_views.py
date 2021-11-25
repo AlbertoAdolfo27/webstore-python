@@ -17,7 +17,10 @@ class CategoryListView(View):
             categories = response.json()
         data = {
             'page_title': 'Categories',
-            'sidebar_active': 'sidebar_categories',
+            'sidebar_active': {
+                'link_1': 'sb_link_categories',
+                'link_2': 'sb_link_categories_list',
+            },
             'categories': categories,
         }
         return render(request, 'admin/categories.html', data)
@@ -30,7 +33,10 @@ class CategoryAddView(View):
     def get(request):
         data = {
             'page_title': 'Add category',
-            'sidebar_active': 'sidebar_categories'
+            'sidebar_active': {
+                'link_1': 'sb_link_categories',
+                'link_2': 'sb_link_categories_add',
+            },
         }
         return render(request, 'admin/add_category.html', data)
 
@@ -46,7 +52,10 @@ class CategoryAddView(View):
             errors = response.json()
         data = {
             'page_title': 'Add category',
-            'sidebar_active': 'sidebar_categories',
+            'sidebar_active': {
+                'link_1': 'sb_link_categories',
+                'link_2': 'sb_link_categories_add',
+            },
             'category': category,
             'status_code': response.status_code,
             'errors': errors,
@@ -72,7 +81,10 @@ class CategoryDetailView(View):
         print(products_not_in)
         data = {
             'page_title': 'Category detail',
-            'sidebar_active': 'sidebar_categories',
+            'sidebar_active': {
+                'link_1': 'sb_link_categories',
+                'link_2': 'sb_link_categories_list',
+            },
             'category': category,
             'products': products,
             'products_not_in': products_not_in,

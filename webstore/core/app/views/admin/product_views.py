@@ -15,19 +15,24 @@ class ProductListView(View):
             products = response.json()
         data = {
             'page_title': 'Products',
-            'sidebar_active': 'sidebar_products',
+            'sidebar_active': {
+                'link_1': 'sb_link_products',
+                'link_2': 'sb_link_products_list',
+            },
             'products': products,
         }
         return render(request, 'admin/products.html', data)
 
 
 class ProductAddView(View):
-
     @staticmethod
     def get(request):
         data = {
             'page_title': 'Add product',
-            'sidebar_active': 'sidebar_products',
+            'sidebar_active': {
+                'link_1': 'sb_link_products',
+                'link_2': 'sb_link_products_add',
+            },
         }
         return render(request, 'admin/add_product.html', data)
 
@@ -42,7 +47,10 @@ class ProductAddView(View):
             errors = response.json()
         data = {
             'page_title': 'Add product',
-            'sidebar_active': 'sidebar_products',
+            'sidebar_active': {
+                'link_1': 'sb_link_products',
+                'link_2': 'sb_link_products_add',
+            },
             'product': product,
             'status_code': response.status_code,
             'errors': errors,
@@ -63,7 +71,10 @@ class ProductDetailView(View):
             errors = response.json()
         data = {
             'page_title': 'Product detail',
-            'sidebar_active': 'sidebar_products',
+            'sidebar_active': {
+                'link_1': 'sb_link_products',
+                'link_2': 'sb_link_products_list',
+            },
             'product': product,
             'status_code': response.status_code,
             'errors': errors,

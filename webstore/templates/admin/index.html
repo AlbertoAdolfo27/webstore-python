@@ -77,10 +77,8 @@
 {% block page-scripts %}{% endblock %}
 <script>
     window.addEventListener('load', (event) => {
-        sidebarActive('{{sidebar_active}}');
+        sidebarActive('{{sidebar_active.link_1}}', '{{sidebar_active.link_2}}');
     });
-
-
 </script>
 
 </body>
