@@ -19,17 +19,17 @@
             <table class="table  table-bordered">
                 <thead class="w3-light-grey">
                 <tr>
-                    <th>Name</th>
-                    <th>Add</th>
+                    <th class="col-md-12">Name</th>
+                    <th class="col-md-2">Add</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for product in products_not_in %}
                 <tr>
-                    <td>{{product.name}}</td>
-                    <td>
+                    <td class="col-md-10">{{product.name}}</td>
+                    <td class="col-md-2">
                         <div class="p-0 w3-right">
-                            <a href="/administrador/categorias/{$categoria.categoria_id}/cursos/{$value.curso_id}/relacionar"
+                            <a href="{% url 'app:admin-category-product-relate' category.id product.id %}"
                                class="btn btn-success btn-block btn-xs w3-tiny" style="padding: 2px 5px; width: 50px">
                                 <i class="fa fa-arrow-right"></i>
                             </a>
@@ -46,35 +46,30 @@
     </div>
 
     <div class="col-md-6" id="cursos-categoria">
-        <p class="pt-4 lead">All products are related</p>
+        <p class="pt-4 lead">Related products</p>
         {% if products %}
-<!--        {if="$quantidadeCursosRelacionados>0"}-->
         <div class="table-responsive">
             <table class="table  table-bordered">
                 <thead class="w3-light-grey">
                 <tr>
-                    <th class="text-left">Remove</th>
-                    <th>#</th>
-                    <th>Product</th>
+                    <th class="text-left col-md-2">Remove</th>
+                    <th class="col-md-10">Product</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for product in products %}
-<!--                {loop="$cursosRelacionados"}-->
                 <tr>
-                    <td>
+                    <td class="col-md-2">
                         <div class="p-0 w3-left">
-                            <a href="/administrador/categorias/{$categoria.categoria_id}/cursos/{$value.curso_id}/remover"
+                            <a href="{% url 'app:admin-category-product-remove-relation' category.id product.id %}"
                                class="btn btn-danger btn-block btn-xs w3-tiny" style="padding: 2px 5px; width: 50px">
                                 <i class="fa fa-arrow-left"></i>
                             </a>
                         </div>
                     </td>
-                    <td>id</td>
-                    <td>name/td>
+                    <td class="col-md-10">{{product.name}}</td>
                 </tr>
                 {% endfor %}
-<!--                {/loop}-->
                 </tbody>
             </table>
         </div>

@@ -1,7 +1,12 @@
 {% extends 'admin/index.html' %}
+{% load static %}
+
+{% block page-styles %}
+<link rel="stylesheet" href="{% static 'css/product_item_styles.css' %}">
+{% endblock %}
 
 {% block header-title %}
-{{product.name}}
+Product detail
 {% endblock %}
 
 {% block breadcrumb-items %}
@@ -11,15 +16,21 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="lead">Description</h1>
-<p>{{product.description}}</p>
 
-<h1 class="lead">Price</h1>
-<p>&dollar; {{product.price}}</p>
-
-<h1 class="lead">Add time</h1>
-<p>{{product.create_time}}</p>
-
-<h1 class="lead">Last updated time</h1>
-<p>{{product.update_time}}</p>
+<div class="row gx-4 gx-lg-5 align-items-center">
+    <div class="col-md-6">
+        <img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..."/>
+    </div>
+    <div class="col-md-6">
+        <h1 class="display-5 fw-bolder">{{product.name}}</h1>
+        <div class="fs-5 mb-5">
+            <span class="bold">price:</span> <span>${{product.price}}</span>
+        </div>
+        <p class="lead mb-5">{{product.description}}</p>
+        <div class="fs-5">
+            <p class="small mb-1">Created time: BST-498</p>
+            <p class="small mb-1">Update time: BST-498</p>
+        </div>
+    </div>
+</div>
 {% endblock %}

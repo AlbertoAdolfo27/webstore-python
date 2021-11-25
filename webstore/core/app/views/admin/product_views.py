@@ -54,7 +54,7 @@ class ProductDetailView(View):
     @staticmethod
     def get(request, pk):
 
-        response = requests.get(Server.get_url('api:product-detail', [pk]))
+        response = requests.get(Server.get_url('api:product-detail', pk))
         product = []
         errors = []
         if response.status_code == status.HTTP_200_OK:
